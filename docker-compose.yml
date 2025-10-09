@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   store:
@@ -11,3 +11,8 @@ services:
     restart: always
     environment:
       - TZ=Asia/Shanghai
+    deploy:
+      resources:
+        limits:
+          cpus: 0.5
+          memory: 512M
