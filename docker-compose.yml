@@ -5,14 +5,12 @@ services:
     build: .
     container_name: store-monitor
     volumes:
+      - ./.env:/app/.env
       - ./update.txt:/app/update.txt
       - ./hash_store.json:/app/hash_store.json
       - ./utils/california:/app/utils/california
     restart: always
     environment:
       - TZ=Asia/Shanghai
-    deploy:
-      resources:
-        limits:
-          cpus: 0.5
-          memory: 512M
+    mem_limit: 512M
+    cpus: 0.5

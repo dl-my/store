@@ -15,7 +15,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 # 创建最终的精简镜像
-FROM mcr.microsoft.com/playwright:v1.41.1-jammy
+FROM mcr.microsoft.com/playwright:v1.52.0-jammy
 
 WORKDIR /app
 
@@ -25,10 +25,10 @@ COPY --from=builder /app/main .
 # 复制配置文件和资源
 COPY hash_store.json .
 COPY update.txt .
-COPY utils/california ./utils/california
+COPY .env /app/.env
 
 # 添加必要的系统依赖
-RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN npx playwright install --with-deps
 
 # 设置时区为上海
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
