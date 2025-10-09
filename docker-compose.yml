@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  store:
+    build: .
+    container_name: store-monitor
+    volumes:
+      - ./update.txt:/app/update.txt
+      - ./hash_store.json:/app/hash_store.json
+      - ./utils/california:/app/utils/california
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
