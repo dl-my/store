@@ -140,7 +140,7 @@ func dynamicUpdate(bot *utils.TelegramBot, browser playwright.Browser, url strin
 	if err != nil {
 		log.Printf("SaveAndDiff 最终失败: %v", err)
 	}
-	err = utils.SaveAndDiff(bot, browser, url)
+	//err = utils.SaveAndDiff(bot, browser, url)
 }
 
 // LoadHashStore 读取持久化的 hash

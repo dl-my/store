@@ -19,7 +19,15 @@ func main() {
 	// 启动 Playwright
 	pw, err := playwright.Run()
 	if err != nil {
-		log.Fatalf("could not launch browser: %v", err)
+		log.Println("Playwright driver not found, installing...")
+		err = playwright.Install()
+		if err != nil {
+			log.Fatalf("could not install Playwright driver: %v", err)
+		}
+		pw, err = playwright.Run()
+		if err != nil {
+			log.Fatalf("could not launch browser even after install: %v", err)
+		}
 	}
 	defer pw.Stop()
 

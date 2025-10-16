@@ -27,11 +27,5 @@ COPY hash_store.json .
 COPY update.txt .
 COPY .env /app/.env
 
-# 添加必要的系统依赖
-RUN npx playwright install --with-deps
-
-# 设置时区为上海
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
 # 运行应用
 CMD ["./main"]

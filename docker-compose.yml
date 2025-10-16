@@ -1,16 +1,16 @@
-version: '3.8'
-
 services:
   store:
     build: .
     container_name: store-monitor
     volumes:
+      - playwright-cache:/root/.cache/ms-playwright-go
       - ./.env:/app/.env
       - ./update.txt:/app/update.txt
       - ./hash_store.json:/app/hash_store.json
-      - ./utils/california:/app/utils/california
+      - ./california:/app/california
     restart: always
-    environment:
-      - TZ=Asia/Shanghai
     mem_limit: 512M
     cpus: 0.5
+
+volumes:
+  playwright-cache:

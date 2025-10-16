@@ -52,7 +52,7 @@ func SaveAndDiff(bot *TelegramBot, browser playwright.Browser, url string) error
 	}
 
 	// 计算图片差异
-	rects := diffBlocks(curImg, baseImg, 20, 8.0)
+	rects := diffBlocks(baseImg, curImg, 20, 8.0)
 	if len(rects) == 0 {
 		log.Printf("未检测到显著变化 (阈值=%.2f, 块大小=%d)", 8.0, 20)
 		return nil
